@@ -265,7 +265,9 @@
 
 	  edges.listView().fields([nga.field('connection').isDetailLink(true)].concat(fields)).filters(fields);
 
-	  edges.creationView().fields(fields);
+	  edges.creationView().fields(fields).onSubmitSuccess(['progression', 'notification', '$state', 'entry', 'entity', function (progression, notification, $state, entry, entity) {
+	    history.back();
+	  }]);
 
 	  edges.editionView().fields(fields);
 
@@ -311,7 +313,9 @@
 
 	  node.listView().fields([nga.field('name').isDetailLink(true), nga.field('type'), nga.field('size'), nga.field('frequency'), nga.field('duration'), nga.field('modifiability'), nga.field('clientAgreement'), nga.field('clinicianAgreement'), nga.field('MDTAgreement')]).filters(fields);
 
-	  node.creationView().fields(fields);
+	  node.creationView().fields(fields).onSubmitSuccess(['progression', 'notification', '$state', 'entry', 'entity', function (progression, notification, $state, entry, entity) {
+	    history.back();
+	  }]);
 
 	  node.editionView().fields(fields);
 

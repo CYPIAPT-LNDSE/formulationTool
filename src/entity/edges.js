@@ -34,7 +34,12 @@ module.exports = (nga, admin) => {
     ])
     .filters(fields);
 
-  edges.creationView().fields(fields);
+  edges.creationView()
+    .fields(fields)
+    .onSubmitSuccess(['progression', 'notification', '$state', 'entry', 'entity',
+      function (progression, notification, $state, entry, entity) {
+        history.back();
+      }]);
 
   edges.editionView().fields(fields);
 
