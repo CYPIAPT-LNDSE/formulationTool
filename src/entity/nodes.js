@@ -101,9 +101,15 @@ module.exports = (nga, admin) => {
     ])
     .filters(fields);
 
-  node.creationView().fields(fields);
+  node.creationView()
+    .fields(fields)
+    .onSubmitSuccess(['progression', 'notification', '$state', 'entry', 'entity',
+      function (progression, notification, $state, entry, entity) {
+        history.back();
+      }]);
 
-  node.editionView().fields(fields);
+  node.editionView()
+    .fields(fields);
 
   admin
     .addEntity(node);
